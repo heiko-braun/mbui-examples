@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<TaskModel taskModelID="001" xmlns="http://www.w3c.org/mbui/v01"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:as7="http://jboss.org/as7">
+
+    <Interaction Identifier="readResource" Frequency="1" Name="Transaction Manager">
+        <Description>The configuration of the transactions subsystem.</Description>
+
+        <Choice>
+           <Interaction Identifier="readResource" Frequency="1" Name="Process ID">
+               <DomainObject>as7:subsystem.transactions</DomainObject>
+           </Interaction>
+            <Interaction Identifier="readResource" Frequency="1" Name="Recovery">
+                <DomainObject>as7:subsystem.transactions</DomainObject>
+            </Interaction>
+        </Choice>
+
+        <DomainObject>as7:subsystem.transactions</DomainObject>
+
+    </Interaction>
+
+</TaskModel>
