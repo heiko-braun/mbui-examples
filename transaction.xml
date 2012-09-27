@@ -17,6 +17,13 @@
 
             <Interaction Name="Process ID" Identifier="readResource" Frequency="1"
                          predef_type="SingleSelection">
+
+                <PreCondition operator="contains">
+                    <ValueLiteral value="process-id-uuid"/>
+                    <ValueLiteral value="process-id-socket-binding"/>
+                    <ValueLiteral value="process-id-socket-max-ports"/>
+                </PreCondition>
+
                 <DomainObject>as7:subsystem.transactions</DomainObject>
             </Interaction>
 
@@ -24,6 +31,13 @@
 
             <Interaction Name="Recovery" Identifier="readResource" Frequency="1"
                          predef_type="SingleSelection">
+
+                <PreCondition operator="contains">
+                    <ValueLiteral value="socket-binding"/>
+                    <ValueLiteral value="recovery-listener"/>
+                    <ValueLiteral value="status-socket-binding"/>
+                </PreCondition>
+
                 <DomainObject>as7:subsystem.transactions</DomainObject>
             </Interaction>
 
@@ -31,6 +45,14 @@
 
             <Interaction Name="Path" Identifier="readResource" Frequency="1"
                          predef_type="SingleSelection">
+
+                <PreCondition operator="contains">
+                    <ValueLiteral value="relative-to"/>
+                    <ValueLiteral value="object-store-path"/>
+                    <ValueLiteral value="path"/>
+                    <ValueLiteral value="object-store-relative-to"/>
+                </PreCondition>
+
                 <DomainObject>as7:subsystem.transactions</DomainObject>
             </Interaction>
 
