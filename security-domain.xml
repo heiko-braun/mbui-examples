@@ -7,7 +7,7 @@
     <!-- first level base attributes -->
 
     <System Name="Security Domains" Identifier="readResource"
-                 predef_type="Overview" Frequency="1">
+            predef_type="Overview" Frequency="1">
 
         <Description>Available security domains</Description>
 
@@ -21,8 +21,27 @@
 
                 <!-- select a domain name -->
                 <PostCondition operator="contains">
-                    <ValueLiteral value="name"/>
+                    <ValueLiteral value="domain-name"/>
                 </PostCondition>
+
+                <Enabling>
+                    <System Name="Module Configurations" Identifier="readResource"
+                            predef_type="Overview">
+
+                        <Choice>
+                            <System Name="Authentication" Identifier="readResource"
+                                    predef_type="Overview"/>
+                            <System Name="Authorisation" Identifier="readResource"
+                                    predef_type="Overview"/>
+                            <System Name="Mapping" Identifier="readResource"
+                                    predef_type="Overview"/>
+                            <System Name="Audit" Identifier="readResource"
+                                    predef_type="Overview"/>
+                        </Choice>
+
+                        <DomainObject>as7:subsystem.security.securitydomain</DomainObject>
+                    </System>
+                </Enabling>
 
                 <DomainObject>as7:subsystem.security.securitydomain</DomainObject>
             </Interaction>

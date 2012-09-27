@@ -7,7 +7,7 @@
     <!-- first level base attributes -->
 
     <System Name="Transaction Manager" Identifier="readResource"
-            predef_type="Overview" Frequency="1">
+            predef_type="Overview" >
 
         <Description>The configuration of the transactions subsystem</Description>
 
@@ -15,7 +15,7 @@
 
             <!-- Main attributes -->
 
-            <Interaction Name="Main" Identifier="readResource" Frequency="1"
+            <Interaction Name="Main" Identifier="readResource" 
                          predef_type="Edit">
 
                 <PreCondition operator="contains">
@@ -31,7 +31,7 @@
 
             <!-- "Process ID" tab -->
 
-            <Interaction Name="Process ID" Identifier="readResource" Frequency="1"
+            <Interaction Name="Process ID" Identifier="readResource" 
                          predef_type="Edit">
 
                 <PreCondition operator="contains">
@@ -45,7 +45,7 @@
 
             <!-- "Recovery" tab -->
 
-            <Interaction Name="Recovery" Identifier="readResource" Frequency="1"
+            <Interaction Name="Recovery" Identifier="readResource" 
                          predef_type="Edit">
 
                 <PreCondition operator="contains">
@@ -59,7 +59,7 @@
 
             <!-- "Path" tab -->
 
-            <Interaction Name="Path" Identifier="readResource" Frequency="1"
+            <Interaction Name="Path" Identifier="readResource" 
                          predef_type="Edit">
 
                 <PreCondition operator="contains">
