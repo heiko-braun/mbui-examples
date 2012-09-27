@@ -14,7 +14,7 @@
         <xs:complexType name="Task">
                 <xs:sequence>
                         <xs:element name="Description" type="xs:string" minOccurs="0"/>
-                        <xs:element name="Precondition" type="ConditionGroup" minOccurs="0"/>
+                        <xs:element name="PreCondition" type="ConditionGroup" minOccurs="0"/>
                         <xs:element name="PostCondition" type="ConditionGroup" minOccurs="0"/>
                         <xs:group ref="UnaryOperatorGroup" minOccurs="0" maxOccurs="1"/>
                         <xs:group ref="N-aryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
