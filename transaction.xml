@@ -60,7 +60,7 @@
             <!-- "Path" tab -->
 
             <Interaction Name="Path" Identifier="readResource" Frequency="1"
-                         predef_type="SingleSelection">
+                         predef_type="Edit">
 
                 <PreCondition operator="contains">
                     <ValueLiteral value="relative-to"/>

@@ -9,14 +9,14 @@
     <System Name="Security Domains" Identifier="readResource"
                  predef_type="Overview" Frequency="1">
 
-        <Description>Registered security domains. Please select a domain to edit the security policies.</Description>
+        <Description>Available security domains</Description>
 
 
         <Interleaving>
 
             <!-- drill down to one of available domains -->
 
-            <Interaction Name="ViewDomain" Identifier="readChildResources"
+            <Interaction Name="ViewDomain" Identifier="readChildrenResources"
                          predef_type="SingleSelection" Frequency="1">
 
                 <!-- select a domain name -->
