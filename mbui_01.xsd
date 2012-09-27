@@ -41,6 +41,7 @@
 
         <xs:group name="N-aryOperatorGroup">
                 <xs:choice>
+                        <xs:element name="Interleaving" type="SubTask"/>
                         <xs:element name="Choice" type="SubTask"/>
                         <xs:element name="Concurrency" type="SubTask"/>
                         <xs:element name="OrderIndependence" type="SubTask"/>
@@ -104,7 +105,7 @@
         <!-- structured precondition modeling -->
 
         <xs:complexType name="ConditionGroup">
-                <xs:choice minOccurs="2" maxOccurs="unbounded">
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
                         <xs:element name="ConditionGroup" type="ConditionGroup" />
                         <xs:group ref="ConditionLiteral"/>
                 </xs:choice>
