@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<TaskModel taskModelID="001" xmlns="http://www.w3c.org/mbui/v01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:as7="http://jboss.org/as7">
+
+    <!-- first level base attributes -->
+
+    <System Name="Security Domains" Identifier="readResource"
+                 predef_type="Overview" Frequency="1">
+
+        <Description>Registered security domains. Please select a domain to edit the security policies.</Description>
+
+
+        <Interleaving>
+
+            <!-- drill down to one of available domains -->
+
+            <Interaction Name="ViewDomain" Identifier="readChildResources"
+                         predef_type="SingleSelection" Frequency="1">
+
+                <!-- select a domain name -->
+                <PostCondition operator="contains">
+                    <ValueLiteral value="name"/>
+                </PostCondition>
+
+                <DomainObject>as7:subsystem.security.securitydomain</DomainObject>
+            </Interaction>
+
+            <!-- edit chosen domain details -->
+
+            <Interaction Name="EditDomain" Identifier="readResource"
+                         predef_type="Edit" Frequency="1">
+
+                <!-- the displayed attributes -->
+                <PreCondition operator="contains">
+                    <ValueLiteral value="name"/>
+                    <ValueLiteral value="cache-type"/>
+                </PreCondition>
+
+                <DomainObject>as7:subsystem.security.securitydomain</DomainObject>
+            </Interaction>
+
+        </Interleaving>
+
+        <DomainObject>as7:subsystem.security.securitydomain</DomainObject>
+    </System>
+
+</TaskModel>
