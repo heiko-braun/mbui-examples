@@ -1,18 +1,39 @@
 <?xml version="1.0"?>
 
 <TaskModel taskModelID="001" xmlns="http://www.w3c.org/mbui/v01"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:as7="http://jboss.org/as7">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:as7="http://jboss.org/as7">
 
-    <Interaction Identifier="readResource" Frequency="1" Name="Transaction Manager">
-        <Description>The configuration of the transactions subsystem.</Description>
+    <!-- first level base attributes -->
+
+    <Interaction Name="Transaction Manager" Identifier="readResource"
+                 predef_type="SingleSelection" Frequency="1">
+
+        <Description>The configuration of the transactions subsystem</Description>
 
         <Choice>
-           <Interaction Identifier="readResource" Frequency="1" Name="Process ID">
-               <DomainObject>as7:subsystem.transactions</DomainObject>
-           </Interaction>
-            <Interaction Identifier="readResource" Frequency="1" Name="Recovery">
+
+            <!-- second level "Process ID" tab -->
+
+            <Interaction Name="Process ID" Identifier="readResource" Frequency="1"
+                         predef_type="SingleSelection">
                 <DomainObject>as7:subsystem.transactions</DomainObject>
             </Interaction>
+
+            <!-- second level "Recovery" tab -->
+
+            <Interaction Name="Recovery" Identifier="readResource" Frequency="1"
+                         predef_type="SingleSelection">
+                <DomainObject>as7:subsystem.transactions</DomainObject>
+            </Interaction>
+
+            <!-- second level "Path" tab -->
+
+            <Interaction Name="Path" Identifier="readResource" Frequency="1"
+                         predef_type="SingleSelection">
+                <DomainObject>as7:subsystem.transactions</DomainObject>
+            </Interaction>
+
         </Choice>
 
         <DomainObject>as7:subsystem.transactions</DomainObject>
