@@ -15,8 +15,7 @@
 
             <!-- Main attributes -->
 
-            <Interaction Name="Main" Identifier="readResource" 
-                         predef_type="Edit">
+            <Interaction Name="Main" Identifier="readResource" predef_type="Edit">
 
                 <PreCondition operator="contains">
                     <ValueLiteral value="jts"/>
@@ -31,8 +30,7 @@
 
             <!-- "Process ID" tab -->
 
-            <Interaction Name="Process ID" Identifier="readResource" 
-                         predef_type="Edit">
+            <Interaction Name="Process ID" Identifier="readResource" predef_type="Edit">
 
                 <PreCondition operator="contains">
                     <ValueLiteral value="process-id-uuid"/>
@@ -45,8 +43,7 @@
 
             <!-- "Recovery" tab -->
 
-            <Interaction Name="Recovery" Identifier="readResource" 
-                         predef_type="Edit">
+            <Interaction Name="Recovery" Identifier="readResource" predef_type="Edit">
 
                 <PreCondition operator="contains">
                     <ValueLiteral value="socket-binding"/>
@@ -59,8 +56,7 @@
 
             <!-- "Path" tab -->
 
-            <Interaction Name="Path" Identifier="readResource" 
-                         predef_type="Edit">
+            <Interaction Name="Path" Identifier="readResource" predef_type="Edit">
 
                 <PreCondition operator="contains">
                     <ValueLiteral value="relative-to"/>

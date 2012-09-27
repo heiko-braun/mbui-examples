@@ -7,7 +7,7 @@
     <!-- first level base attributes -->
 
     <System Name="Security Domains" Identifier="readResource"
-            predef_type="Overview" Frequency="1">
+            predef_type="Overview">
 
         <Description>Available security domains</Description>
 
@@ -16,7 +16,7 @@
             <!-- drill down to one of available domains -->
 
             <Interaction Name="ViewDomain" Identifier="readChildrenResources"
-                         predef_type="SingleSelection" Frequency="1">
+                         predef_type="SingleSelection">
 
                 <!-- select a domain name -->
                 <PostCondition operator="contains">
@@ -50,8 +50,7 @@
 
             <!-- edit chosen domain details -->
 
-            <Interaction Name="EditDomain" Identifier="readResource"
-                         predef_type="Edit" Frequency="1">
+            <Interaction Name="EditDomain" Identifier="readResource" predef_type="Edit">
 
                 <!-- the displayed attributes -->
                 <PreCondition operator="contains">
