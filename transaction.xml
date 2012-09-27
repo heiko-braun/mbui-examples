@@ -6,17 +6,33 @@
 
     <!-- first level base attributes -->
 
-    <Interaction Name="Transaction Manager" Identifier="readResource"
-                 predef_type="SingleSelection" Frequency="1">
+    <System Name="Transaction Manager" Identifier="readResource"
+            predef_type="Overview" Frequency="1">
 
         <Description>The configuration of the transactions subsystem</Description>
 
         <Choice>
 
-            <!-- second level "Process ID" tab -->
+            <!-- Main attributes -->
+
+            <Interaction Name="Main" Identifier="readResource" Frequency="1"
+                         predef_type="Edit">
+
+                <PreCondition operator="contains">
+                    <ValueLiteral value="jts"/>
+                    <ValueLiteral value="default-timeout"/>
+                    <ValueLiteral value="node-identifier"/>
+                    <ValueLiteral value="enable-tsm"/>
+                    <ValueLiteral value="enable-statistics"/>
+                </PreCondition>
+
+                <DomainObject>as7:subsystem.transactions</DomainObject>
+            </Interaction>
+
+            <!-- "Process ID" tab -->
 
             <Interaction Name="Process ID" Identifier="readResource" Frequency="1"
-                         predef_type="SingleSelection">
+                         predef_type="Edit">
 
                 <PreCondition operator="contains">
                     <ValueLiteral value="process-id-uuid"/>
@@ -27,10 +43,10 @@
                 <DomainObject>as7:subsystem.transactions</DomainObject>
             </Interaction>
 
-            <!-- second level "Recovery" tab -->
+            <!-- "Recovery" tab -->
 
             <Interaction Name="Recovery" Identifier="readResource" Frequency="1"
-                         predef_type="SingleSelection">
+                         predef_type="Edit">
 
                 <PreCondition operator="contains">
                     <ValueLiteral value="socket-binding"/>
@@ -41,7 +57,7 @@
                 <DomainObject>as7:subsystem.transactions</DomainObject>
             </Interaction>
 
-            <!-- second level "Path" tab -->
+            <!-- "Path" tab -->
 
             <Interaction Name="Path" Identifier="readResource" Frequency="1"
                          predef_type="SingleSelection">
@@ -58,8 +74,6 @@
 
         </Choice>
 
-        <DomainObject>as7:subsystem.transactions</DomainObject>
-
-    </Interaction>
+    </System>
 
 </TaskModel>
