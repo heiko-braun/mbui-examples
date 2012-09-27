@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xs:schema xmlns="http://www.w3c.org/mbui/v01"
+        elementFormDefault="qualified" targetNamespace="http://www.w3c.org/mbui/v01"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:element name="TaskModel">
+                <xs:complexType>
+                        <xs:sequence>
+                                <xs:group ref="categoryGroup" minOccurs="1" maxOccurs="1"/>
+                        </xs:sequence>
+                        <xs:attribute name="taskModelID" type="xs:string" use="required" />
+                </xs:complexType>
+        </xs:element>
+
+        <xs:complexType name="Task">
+                <xs:sequence>
+                        <xs:element name="Description" type="xs:string" minOccurs="0"/>
+                        <xs:element name="Precondition" type="ConditionGroup" minOccurs="0"/>
+                        <xs:element name="PostCondition" type="ConditionGroup" minOccurs="0"/>
+                        <xs:group ref="UnaryOperatorGroup" minOccurs="0" maxOccurs="1"/>
+                        <xs:group ref="N-aryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="ContextOfUse" type="xs:QName" />
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="DomainObject" type="xs:QName" />
+                </xs:sequence>
+                <xs:attribute name="Identifier" type="xs:string" use="required" />
+                <xs:attribute name="Name" type="xs:string" />
+                <xs:attribute name="Frequency" type="xs:string"/>
+        </xs:complexType>
+
+        <xs:complexType name="SubTask">
+                <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:group ref="categoryGroup" minOccurs="2" maxOccurs="unbounded"/>
+                </xs:sequence>
+        </xs:complexType>
+
+        <xs:group name="UnaryOperatorGroup">
+                <xs:sequence>
+                        <xs:element name="Optional" type="UnaryOperator" />
+                        <xs:element name="Iterative" type="UnaryOperator"/>
+                </xs:sequence>
+        </xs:group>
+
+        <xs:group name="N-aryOperatorGroup">
+                <xs:choice>
+                        <xs:element name="Choice" type="SubTask"/>
+                        <xs:element name="Concurrency" type="SubTask"/>
+                        <xs:element name="OrderIndependence" type="SubTask"/>
+                        <xs:element name="Synchronization" type="SubTask"/>
+                        <xs:element name="Disabling" type="SubTask"/>
+                        <xs:element name="SuspendResume" type="SubTask"/>
+                        <xs:element name="Enabling" type="SubTask"/>
+                        <xs:element name="Parallelism" type="SubTask"/>
+                </xs:choice>
+        </xs:group>
+
+        <xs:group name="categoryGroup">
+                <xs:choice>
+                        <xs:element type="User" name="User"/>
+                        <xs:element type="System" name="System" />
+                        <xs:element type="Interaction" name="Interaction"/>
+                        <xs:element type="Abstraction" name="Abstraction"/>
+                </xs:choice>
+        </xs:group>
+
+        <xs:complexType name="UnaryOperator">
+                <xs:attribute name="value" type="xs:boolean" default="true"/>
+        </xs:complexType>
+
+        <xs:complexType name="User">
+                <xs:complexContent>
+                        <xs:extension base="Task">
+                                <xs:attribute name="predef_type" type="UserTypeEnum"/>
+                                <xs:attribute name="ext_type" type="xs:string"/>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+
+        <xs:complexType name="System">
+                <xs:complexContent>
+                        <xs:extension base="Task">
+                                <xs:attribute name="predef_type" type="SystemTypeEnum"/>
+                                <xs:attribute name="ext_type" type="xs:string"/>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+
+        <xs:complexType name="Interaction">
+                <xs:complexContent>
+                        <xs:extension base="Task">
+                                <xs:attribute name="predef_type" type="InteractionTypeEnum"/>
+                                <xs:attribute name="ext_type" type="xs:string"/>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+
+        <xs:complexType name="Abstraction">
+                <xs:complexContent>
+                        <xs:extension base="Task">
+                                <xs:attribute name="predef_type" type="AbstractTypeEnum"/>
+                                <xs:attribute name="ext_type" type="xs:string"/>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+
+        <!-- structured precondition modeling -->
+
+        <xs:complexType name="ConditionGroup">
+                <xs:choice minOccurs="2" maxOccurs="unbounded">
+                        <xs:element name="ConditionGroup" type="ConditionGroup" />
+                        <xs:group ref="ConditionLiteral"/>
+                </xs:choice>
+                <xs:attribute name="operator" type="LogicOperator" />
+        </xs:complexType>
+
+        <xs:group name="ConditionLiteral">
+                <xs:choice>
+                        <xs:element name="ValueLiteral" type="ValueLiteral"/>
+                        <xs:element name="DomainObjectLiteral" type="DomainObjectLiteral"/>
+                </xs:choice>
+        </xs:group>
+
+        <xs:complexType name="ValueLiteral">
+                <xs:attribute use="required" name="value" type="xs:string"/>
+        </xs:complexType>
+
+        <xs:complexType name="DomainObjectLiteral">
+                <xs:attribute use="required" name="domain_object" type="xs:string"/>
+        </xs:complexType>
+
+        <!-- Simple types -->
+
+        <xs:simpleType name="UserTypeEnum">
+                <xs:restriction base="xs:NMTOKEN">
+                        <xs:enumeration value="ProblemSolving"/>
+                        <xs:enumeration value="Comparing"/>
+                        <xs:enumeration value="Planning" />
+                </xs:restriction>
+        </xs:simpleType>
+
+        <xs:simpleType name="SystemTypeEnum">
+                <xs:restriction base="xs:NMTOKEN">
+                        <xs:enumeration value="Comparison"/>
+                        <xs:enumeration value="GenerateAlerts"/>
+                        <xs:enumeration value="Feedback" />
+                        <xs:enumeration value="Grouping" />
+                        <xs:enumeration value="Locate" />
+                        <xs:enumeration value="Overview" />
+                </xs:restriction>
+        </xs:simpleType>
+
+        <xs:simpleType name="InteractionTypeEnum">
+                <xs:restriction base="xs:NMTOKEN">
+                        <xs:enumeration value="SingleSelection"/>
+                        <xs:enumeration value="MultipleSelection"/>
+                        <xs:enumeration value="Edit" />
+                        <xs:enumeration value="Control" />
+                        <xs:enumeration value="Zooming" />
+                        <xs:enumeration value="Filtering" />
+                        <xs:enumeration value="DetailOnDemand" />
+                </xs:restriction>
+        </xs:simpleType>
+
+        <xs:simpleType name="AbstractTypeEnum">
+                <xs:restriction base="xs:NMTOKEN">
+                        <xs:enumeration value="SearchInformation"/>
+                </xs:restriction>
+        </xs:simpleType>
+
+        <xs:simpleType name="LogicOperator">
+                <xs:restriction base="xs:string">
+                        <xs:enumeration value="and" id="and" />
+                        <xs:enumeration value="or" id="or" />
+                        <xs:enumeration value="xor" id="xor" />
+                        <xs:enumeration value="contains" id="contains" />
+                        <xs:enumeration value="starts" id="starts" />
+                        <xs:enumeration value="ends" id="ends" />
+                        <xs:enumeration value="gt" id="gt" />
+                        <xs:enumeration value="gteq" id="gteq" />
+                        <xs:enumeration value="lteq" id="lteq" />
+                        <xs:enumeration value="lt" id="lt" />
+                        <xs:enumeration value="eq" id="eq" />
+                        <xs:enumeration value="neq" id="neq" />
+                </xs:restriction>
+        </xs:simpleType>
+
+</xs:schema>
